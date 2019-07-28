@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'SiteController@home');
+Route::get('/about', 'SiteController@about');
+Route::get('/register', 'SiteController@register');
+Route::post('/postregister', 'SiteController@postregister');
 
 Route::get('/login', 'AuthController@login')->name('login');
 Route::post('/postlogin', 'AuthController@postlogin');
