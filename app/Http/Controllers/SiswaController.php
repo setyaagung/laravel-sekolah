@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use App\User;
+use App\Exports\SiswaExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SiswaController extends Controller
 {
@@ -110,5 +112,10 @@ class SiswaController extends Controller
         $siswa = \App\Siswa::find($id_siswa);
         $siswa->mapel()->detach($id_mapel);
         return redirect()->back()->with('hapus','Data nilai berhasil dihapus');
+    }
+
+    public function export()
+    {
+        return Excel::download(new SiswaExport, 'Siswa.xlsx');
     }
 }

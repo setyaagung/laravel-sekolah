@@ -12,6 +12,9 @@
                     <div class="panel">
 						<div class="panel-heading">
 						    <h3 class="panel-title">Data Siswa</h3>
+                            <div class="right">
+                                <a href="/siswa/export" class="btn btn-success btn-sm">Export</a>
+                            </div>
 						</div>
 						<div class="panel-body">
 							<table class="table table-hover">
