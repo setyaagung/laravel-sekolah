@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="{{asset('template/assets/vendor/font-awesome/css/font-awesome.min.css')}}">
 	<link rel="stylesheet" href="{{asset('template/assets/vendor/linearicons/style.css')}}">
 	<link rel="stylesheet" href="{{asset('template/assets/vendor/toastr/toastr.min.css')}}">
-	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 	<!-- MAIN CSS -->
 	<link rel="stylesheet" href="{{asset('template/assets/css/main.css')}}">
 	<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
@@ -22,6 +22,7 @@
 	<!-- ICONS -->
 	<link rel="apple-touch-icon" sizes="76x76" href="{{asset('template/assets/img/apple-icon.png')}}">
 	<link rel="icon" type="image/png" sizes="96x96" href="{{asset('template/assets/img/favicon.png')}}">
+
 	@yield('header')
 </head>
 
@@ -51,6 +52,25 @@
 	<script src="{{asset('template/assets/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
 	<script src="{{asset('template/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
 	<script src="{{asset('template/assets/scripts/klorofil-common.js')}}"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+	<script>
+		@if (Session::has('tambah'))
+			toastr.success("{{Session::get('tambah')}}", "Sukses");
+		@endif
+
+		@if (Session::has('edit'))
+			toastr.info("{{Session::get('edit')}}", "Perbarui");
+		@endif
+
+		@if (Session::has('hapus'))
+			toastr.error("{{Session::get('hapus')}}", "Terhapus");
+		@endif
+
+		@if (Session::has('error'))
+			toastr.error("{{Session::get('error')}}", "Sudah Ada");
+		@endif
+	</script>
 	@yield('footer')
 </body>
 

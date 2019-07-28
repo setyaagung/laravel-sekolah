@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
+use App\Siswa;
 use App\Exports\SiswaExport;
 use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class SiswaController extends Controller
 {
@@ -50,15 +52,13 @@ class SiswaController extends Controller
         return redirect('/siswa')->with('tambah', 'Data berhasil ditambahkan');
     }
 
-    public function edit($id)
+    public function edit(Siswa $siswa)
     {
-        $siswa = \App\Siswa::find($id);
         return view('master/siswa/edit', ['siswa' => $siswa]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Siswa $siswa)
     {
-        $siswa = \App\Siswa::find($id);
         $siswa->update($request->all());
         if($request->hasFile('gambar'))
         {
@@ -69,16 +69,14 @@ class SiswaController extends Controller
         return redirect('/siswa')->with('edit','Data berhasil diperbarui');
     }
 
-    public function delete($id)
+    public function delete(Siswa $siswa)
     {
-        $siswa = \App\Siswa::find($id);
         $siswa->delete($siswa);
         return redirect('/siswa')->with('hapus','Data berhasil dihapus');
     }
 
-    public function profile($id)
+    public function profile(Siswa $siswa)
     {
-        $siswa = \App\Siswa::find($id);
         $matapelajaran = \App\Mapel::all();
 
         // menyiapkan data untuk chart
@@ -107,15 +105,21 @@ class SiswaController extends Controller
         return redirect('siswa/'.$id_siswa.'/profile')->with('tambah','Data nilai berhasil diinputkan');
     }
 
-    public function deletenilai($id_siswa, $id_mapel)
+    public function deletenilai(Siswa $siswa, $id_mapel)
     {
-        $siswa = \App\Siswa::find($id_siswa);
         $siswa->mapel()->detach($id_mapel);
         return redirect()->back()->with('hapus','Data nilai berhasil dihapus');
     }
 
-    public function export()
+    public function exportExcel()
     {
         return Excel::download(new SiswaExport, 'Siswa.xlsx');
+    }
+
+    public function exportPdf()
+    {
+        $siswa = \App\Siswa::all();
+        $pdf = PDF::loadView('master/laporan/siswapdf', ['siswa' => $siswa]);
+        return $pdf->download('Laporan Data Siswa.pdf');
     }
 }

@@ -13,7 +13,8 @@
 						<div class="panel-heading">
 						    <h3 class="panel-title">Data Siswa</h3>
                             <div class="right">
-                                <a href="/siswa/export" class="btn btn-success btn-sm">Export</a>
+                                <a href="/siswa/exportexcel" class="btn btn-success btn-sm"><i class="fa fa-file-excel-o"></i> Excel</a>
+                                <a href="/siswa/exportpdf" class="btn btn-danger btn-sm"><i class="fa fa-file-pdf-o"></i> PDF</a>
                             </div>
 						</div>
 						<div class="panel-body">
@@ -42,7 +43,7 @@
                                         <td>{{$siswa->rataRataNilai()}}</td>
                                         <td>
                                             <a href="/siswa/{{$siswa->id}}/edit" class="btn btn-warning btn-sm">Edit</a>
-                                            <a href="/siswa/{{$siswa->id}}/delete" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?');">Delete</a>
+                                            <a href="#" class="btn btn-danger btn-sm delete" id="{{$siswa->id}}">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -130,4 +131,25 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('footer')
+    <script>
+        $('.delete').click(function() {
+           var siswa_id = $(this).attr('id');
+           swal({
+              title: "Yakin ?",
+              text: "Ingin meenghapus data siswa ini dengan id "+siswa_id+" ??",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+            })
+            .then((willDelete) => {
+                console.log(willDelete);
+                if (willDelete) {
+                    window.location = "/siswa/"+siswa_id+"/delete";
+                }
+            });
+        });
+    </script>
 @endsection
