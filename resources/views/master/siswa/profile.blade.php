@@ -12,32 +12,6 @@
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="container-fluid">
-				@if(session('tambah'))
-					<div class="alert alert-success " roles="alert">
-						{{session('tambah')}}
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-				@endif
-
-				@if(session('hapus'))
-					<div class="alert alert-info" roles="alert">
-						{{session('hapus')}}
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-				@endif
-
-				@if(session('error'))
-					<div class="alert alert-danger" roles="alert">
-						{{session('error')}}
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-				@endif
 					<div class="panel panel-profile">
 						<div class="clearfix">
 							<!-- LEFT COLUMN -->
