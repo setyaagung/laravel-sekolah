@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
 
 class SiteController extends Controller
 {
@@ -37,5 +38,11 @@ class SiteController extends Controller
         $siswa = \App\Siswa::create($request->all());
 
         return redirect('/')->with('sukses', 'Selamat anda pendaftran anda berhasil');
+   }
+
+   public function singlepost($slug)
+   {
+     $post = Post::where('slug', '=', $slug)->first();
+     return view('sites/singlepost', compact(['post']));
    }
 }

@@ -15,7 +15,7 @@
 	<!-- meta character set -->
 	<meta charset="UTF-8">
 	<!-- Site Title -->
-	<title>Education</title>
+	<title>{{config('sekolah.title')}}</title>
 
 	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
 			<!--
@@ -45,8 +45,8 @@
 								</ul>			
 							</div>
 							<div class="col-lg-6 col-sm-6 col-4 header-top-right no-padding">
-								<a href="tel:+953 012 3654 896"><span class="lnr lnr-phone-handset"></span> <span class="text">+953 012 3654 896</span></a>
-								<a href="mailto:support@colorlib.com"><span class="lnr lnr-envelope"></span> <span class="text">support@colorlib.com</span></a>			
+								<a href="#"><span class="lnr lnr-phone-handset"></span> <span class="text">{{config('sekolah.telpon')}}</span></a>
+								<a href="#"><span class="lnr lnr-envelope"></span> <span class="text">{{config('sekolah.email')}}</span></a>			
 							</div>
 						</div>			  					
 					</div>
