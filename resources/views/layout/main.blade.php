@@ -22,6 +22,11 @@
 	<!-- ICONS -->
 	<link rel="apple-touch-icon" sizes="76x76" href="{{asset('template/assets/img/apple-icon.png')}}">
 	<link rel="icon" type="image/png" sizes="96x96" href="{{asset('template/assets/img/favicon.png')}}">
+	<style type="text/css">
+		.ck-editor__editable_inline {
+		    min-height: 300px;
+		}
+	</style>
 
 	@yield('header')
 </head>
@@ -54,6 +59,7 @@
 	<script src="{{asset('template/assets/scripts/klorofil-common.js')}}"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+	<script src="{{asset('frontend/js/ckeditor.js')}}"></script>
 	<script>
 		@if (Session::has('tambah'))
 			toastr.success("{{Session::get('tambah')}}", "Sukses");
