@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Siswa;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,27 +17,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('siswa', function()
-{
-	return Siswa::paginate(3);
-
-});
-
-Route::get('siswa/{siswa}', function($id)
-{
-	return Siswa::find($id);
-});
-
-
-Route::post('siswa', function()
-{
-	 return Siswa::create(request()->all());
-});
-
-Route::delete('siswa/{siswa}', function(Siswa $siswa)
-{
-	 $siswa->delete();
-	 return 'success';
-});
 
 Route::post('/siswa/{id}/editnilai', 'ApiController@editnilai');
